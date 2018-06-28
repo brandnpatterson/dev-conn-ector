@@ -1,7 +1,19 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { func, object } from 'prop-types';
+import TextFieldGroup from './common/TextFieldGroup';
 
-class Register extends Component {
+// Redux
+import { connect } from 'react-redux';
+import { registerUser } from '../actions/authActions';
+
+const propTypes = {
+  auth: object.isRequired,
+  errors: object.isRequired,
+  registerUser: func.isRequired
+};
+
+class Register extends React.Component {
   state = {
     name: '',
     email: '',
@@ -9,6 +21,19 @@ class Register extends Component {
     password: '',
     password_conf: ''
   };
+
+  // assign props to state
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -24,10 +49,8 @@ class Register extends Component {
       password_conf: this.state.password_conf
     };
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    // pass history to the registerUser action
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
@@ -43,78 +66,40 @@ class Register extends Component {
                 Create your DevConnector account
               </p>
               <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={
-                      'form-control form-control-lg' +
-                      (errors.name ? ' is-invalid' : '')
-                    }
-                    placeholder="Name"
-                    name="name"
-                    value={name}
-                    onChange={this.onChange}
-                  />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={
-                      'form-control form-control-lg' +
-                      (errors.email ? ' is-invalid' : '')
-                    }
-                    placeholder="Email Address"
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                  {!errors.email && (
-                    <small className="form-text text-muted">
-                      This site uses Gravatar so if you want a profile image,
-                      use a Gravatar email
-                    </small>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={
-                      'form-control form-control-lg' +
-                      (errors.password ? ' is-invalid' : '')
-                    }
-                    placeholder="Password"
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={
-                      'form-control form-control-lg' +
-                      (errors.password_conf ? ' is-invalid' : '')
-                    }
-                    placeholder="Confirm Password"
-                    name="password_conf"
-                    value={password_conf}
-                    onChange={this.onChange}
-                  />
-                  {errors.password_conf && (
-                    <div className="invalid-feedback">
-                      {errors.password_conf}
-                    </div>
-                  )}
-                </div>
+                <TextFieldGroup
+                  error={errors.name}
+                  name="name"
+                  onChange={this.onChange}
+                  placeholder="Name"
+                  type="name"
+                  value={name}
+                />
+                <TextFieldGroup
+                  error={errors.email}
+                  name="email"
+                  info="This site uses Gravatar so if you want a profile image, use
+                    a Gravatar email"
+                  onChange={this.onChange}
+                  placeholder="Email Address"
+                  type="email"
+                  value={email}
+                />
+                <TextFieldGroup
+                  error={errors.password}
+                  name="password"
+                  onChange={this.onChange}
+                  placeholder="Password"
+                  type="password"
+                  value={password}
+                />
+                <TextFieldGroup
+                  error={errors.password_conf}
+                  name="password_conf"
+                  onChange={this.onChange}
+                  placeholder="Confirm Password"
+                  type="password"
+                  value={password_conf}
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
@@ -125,4 +110,16 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = propTypes;
+
+// map Redux store to Component props
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+// use Redux actions and withRouter
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

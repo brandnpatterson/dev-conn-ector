@@ -1,8 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { object } from 'prop-types';
 import styled from 'styled-components';
 import image from '../img/showcase.jpg';
 
-class Home extends Component {
+// Redux
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
+
+const propTypes = {
+  auth: object.isRequired
+};
+
+class Home extends React.Component {
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   render() {
     return (
       <StyledHome>
@@ -32,6 +47,8 @@ class Home extends Component {
   }
 }
 
+Home.propTypes = propTypes;
+
 const StyledHome = styled.div`
   background: url(${image}) no-repeat center cover;
   height: 100vh;
@@ -52,4 +69,12 @@ const StyledHome = styled.div`
     width: 100%;
   }
 `;
-export default Home;
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Home);

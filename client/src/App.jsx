@@ -1,11 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Components
+import Dashboard from './components/Dashboard';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import PrivateRoute from './components/common/PrivateRoute';
 import Register from './components/Register';
 
 let App = () => {
@@ -15,10 +18,11 @@ let App = () => {
         <Header />
         <Route exact path="/" component={Home} />
         <div className="container">
-          <Route exact path="/login" component={Login} />
-        </div>
-        <div className="container">
           <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Switch>
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          </Switch>
         </div>
         <Footer />
       </StyledApp>
@@ -41,7 +45,7 @@ let StyledApp = styled.div`
   }
 
   .form-control::placeholder {
-    color: #bbb !important;
+    color: #bbb;
   }
 `;
 
