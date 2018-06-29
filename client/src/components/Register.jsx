@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { func, object } from 'prop-types';
-import TextFieldGroup from './common/TextFieldGroup';
+import TextFieldGroup from './templates/TextFieldGroup';
 
 // Redux
 import { connect } from 'react-redux';
@@ -36,7 +36,9 @@ class Register extends React.Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   onSubmit = e => {
@@ -54,7 +56,7 @@ class Register extends React.Component {
   };
 
   render() {
-    const { name, email, errors, password, password_conf } = this.state;
+    const { errors } = this.state;
 
     return (
       <div className="register">
@@ -72,7 +74,7 @@ class Register extends React.Component {
                   onChange={this.onChange}
                   placeholder="Name"
                   type="name"
-                  value={name}
+                  value={this.state.name}
                 />
                 <TextFieldGroup
                   error={errors.email}
@@ -82,7 +84,7 @@ class Register extends React.Component {
                   onChange={this.onChange}
                   placeholder="Email Address"
                   type="email"
-                  value={email}
+                  value={this.state.email}
                 />
                 <TextFieldGroup
                   error={errors.password}
@@ -90,7 +92,7 @@ class Register extends React.Component {
                   onChange={this.onChange}
                   placeholder="Password"
                   type="password"
-                  value={password}
+                  value={this.state.password}
                 />
                 <TextFieldGroup
                   error={errors.password_conf}
@@ -98,7 +100,7 @@ class Register extends React.Component {
                   onChange={this.onChange}
                   placeholder="Confirm Password"
                   type="password"
-                  value={password_conf}
+                  value={this.state.password_conf}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

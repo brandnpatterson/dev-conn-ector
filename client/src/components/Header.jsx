@@ -48,6 +48,15 @@ class Header extends React.Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link
+            onClick={this.toggleCollapse}
+            className="nav-link"
+            to="/dashboard"
+          >
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
           <a className="null-link nav-link" onClick={this.onLogout} href={null}>
             <img
               className="rounded-circle user-icon"
@@ -133,8 +142,8 @@ const StyledHeader = styled.div`
   }
 
   .user-icon {
-    width: 25px;
     margin-right: 5px;
+    width: 25px;
   }
 `;
 

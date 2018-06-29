@@ -1,6 +1,6 @@
 import React from 'react';
 import { func, object } from 'prop-types';
-import TextFieldGroup from './common/TextFieldGroup';
+import TextFieldGroup from './templates/TextFieldGroup';
 
 // Redux
 import { connect } from 'react-redux';
@@ -36,7 +36,9 @@ class Login extends React.Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   onSubmit = e => {
@@ -51,7 +53,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { email, errors, password } = this.state;
+    const { errors } = this.state;
 
     return (
       <div className="login">
@@ -69,7 +71,7 @@ class Login extends React.Component {
                   onChange={this.onChange}
                   placeholder="Email Address"
                   type="email"
-                  value={email}
+                  value={this.state.email}
                 />
                 <TextFieldGroup
                   error={errors.password}
@@ -77,7 +79,7 @@ class Login extends React.Component {
                   onChange={this.onChange}
                   placeholder="Password"
                   type="password"
-                  value={password}
+                  value={this.state.password}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
