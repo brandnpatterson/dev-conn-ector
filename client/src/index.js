@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
+import { AppContainer } from 'react-hot-loader';
+import registerServiceWorker from './registerServiceWorker';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -37,9 +39,23 @@ if (localStorage.jwtToken) {
   }
 }
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+const renderApp = () => {
+  render(
+    <AppContainer>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root')
+  );
+};
+
+registerServiceWorker();
+
+renderApp();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}
