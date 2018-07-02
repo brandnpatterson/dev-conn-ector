@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Components
+import AddEducation from './components/add-credentials/AddEducation';
 import AddExperience from './components/add-credentials/AddExperience';
 import CreateProfile from './components/CreateProfile';
 import Dashboard from './components/dashboard/Dashboard';
@@ -24,6 +25,11 @@ let App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Switch>
+            <PrivateRoute
+              exact
+              path="/add-education"
+              component={AddEducation}
+            />
             <PrivateRoute
               exact
               path="/add-experience"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { func, object } from 'prop-types';
 import InputGroup from './templates/InputGroup';
 import SelectListGroup from './templates/SelectListGroup';
@@ -191,6 +191,9 @@ class CreateProfile extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link className="btn btn-light" to="/dashboard">
+                Go Back
+              </Link>
               <h1 className="display-for text-center">Edit Your Profile</h1>
               <p className="lead text-center">
                 Let's get some information to make your profile stand out

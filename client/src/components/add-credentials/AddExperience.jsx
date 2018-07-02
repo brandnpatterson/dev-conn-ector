@@ -86,7 +86,6 @@ class AddExperience extends React.Component {
                   name="company"
                   onChange={this.onChange}
                   placeholder="* Company"
-                  type="company"
                   value={this.state.company}
                 />
                 <TextFieldGroup
@@ -94,7 +93,6 @@ class AddExperience extends React.Component {
                   name="title"
                   onChange={this.onChange}
                   placeholder="* Title"
-                  type="title"
                   value={this.state.title}
                 />
                 <TextFieldGroup
@@ -102,7 +100,6 @@ class AddExperience extends React.Component {
                   name="location"
                   onChange={this.onChange}
                   placeholder="* Location"
-                  type="location"
                   value={this.state.location}
                 />
                 <h6>From Date</h6>
@@ -142,7 +139,6 @@ class AddExperience extends React.Component {
                   name="description"
                   onChange={this.onChange}
                   placeholder="Job Description"
-                  type="description"
                   value={this.state.description}
                 />
                 <input
