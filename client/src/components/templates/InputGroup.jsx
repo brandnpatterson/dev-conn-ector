@@ -8,7 +8,7 @@ const propTypes = {
   name: string.isRequired,
   placeholder: string,
   type: string.isRequired,
-  value: string.isRequired
+  value: string
 };
 
 const InputGroup = ({
@@ -20,6 +20,7 @@ const InputGroup = ({
   type,
   value
 }) => {
+  console.log(value)
   return (
     <div className="input-group mb-3">
       <div className="input-group-prepend">

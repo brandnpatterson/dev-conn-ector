@@ -12,6 +12,9 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import NotFound from './components/NotFound';
+import Profile from './components/profile/Profile';
+import Profiles from './components/profiles/Profiles';
 import PrivateRoute from './components/templates/PrivateRoute';
 import Register from './components/Register';
 
@@ -22,9 +25,11 @@ let App = () => {
         <Header />
         <Route exact path="/" component={Home} />
         <div className="container">
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
           <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile/:handle" component={Profile} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/register" component={Register} />
             <PrivateRoute
               exact
               path="/add-education"
@@ -41,9 +46,8 @@ let App = () => {
               component={CreateProfile}
             />
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-          </Switch>
-          <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <Route path="" component={NotFound} />
           </Switch>
         </div>
         <Footer />

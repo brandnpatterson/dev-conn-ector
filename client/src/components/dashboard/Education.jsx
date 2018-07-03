@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { array, func } from 'prop-types';
 import Moment from 'react-moment';
 import { deleteEducation } from '../../actions/profileActions';
@@ -11,7 +11,7 @@ const propTypes = {
   education: array.isRequired
 };
 
-class Education extends Component {
+class Education extends React.Component {
   onDeleteClick(id) {
     this.props.deleteEducation(id);
   }

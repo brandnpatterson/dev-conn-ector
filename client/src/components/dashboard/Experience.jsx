@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { array, func } from 'prop-types';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
@@ -11,7 +11,7 @@ const propTypes = {
   experience: array.isRequired
 };
 
-class Experience extends Component {
+class Experience extends React.Component {
   onDeleteClick(id) {
     this.props.deleteExperience(id);
   }

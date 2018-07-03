@@ -79,17 +79,17 @@ class CreateProfile extends React.Component {
       this.setState({
         bio: profile.bio,
         company: profile.company,
-        facebook: profile.facebook,
         githubusername: profile.githubusername,
         handle: profile.handle,
-        instagram: profile.instagram,
-        linkedin: profile.linkedin,
         location: profile.location,
         skills: skillsCSV,
         status: profile.status,
-        twitter: profile.twitter,
         website: profile.website,
-        youtube: profile.youtube
+        facebook: profile.social.facebook,
+        instagram: profile.social.instagram,
+        linkedin: profile.social.linkedin,
+        twitter: profile.social.twitter,
+        youtube: profile.social.youtube
       });
     }
   }
