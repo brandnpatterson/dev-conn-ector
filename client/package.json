@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "react-scripts build",
-    "build-rewired": "react-app-rewired build",
     "start": "npm run stylelint && react-app-rewired start",
     "stylelint": "stylelint src/**/*.jsx",
     "test": "react-app-rewired test --env=jsdom",
