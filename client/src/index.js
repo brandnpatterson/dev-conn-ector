@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import { AppContainer } from 'react-hot-loader';
+// import { AppContainer } from 'react-hot-loader';
 import registerServiceWorker from './registerServiceWorker';
 
 // Redux
@@ -39,23 +39,32 @@ if (localStorage.jwtToken) {
   }
 }
 
-const renderApp = () => {
+// const renderLiveReload = () => {
+//   render(
+//     <AppContainer>
+//       <Provider store={store}>
+//         <App />
+//       </Provider>
+//     </AppContainer>,
+//     document.getElementById('root')
+//   );
+// };
+
+const render = () => {
   render(
-    <AppContainer>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </AppContainer>,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.getElementById('root')
   );
 };
 
 registerServiceWorker();
 
-renderApp();
+render();
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-    renderApp();
+    render();
   });
 }
