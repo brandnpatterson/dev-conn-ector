@@ -51,7 +51,7 @@ let App = () => {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/post/:id" component={Post} />
             <PrivateRoute exact path="/feed" component={Posts} />
-            <Route path="" component={NotFound} />
+            <Route component={NotFound} />
           </Switch>
         </div>
         <Footer />
