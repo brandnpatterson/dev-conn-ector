@@ -44,6 +44,12 @@ class ProfileGithub extends React.Component {
   render() {
     const { repos } = this.state;
 
+    let repoTitle = (
+      <div>
+        <hr />
+        <h3 className="mb-4">Latest Github Repos</h3>
+      </div>
+    );
     const repoItems = repos.map(repo => {
       return (
         <div className="card card-body md-2" key={repo.id}>
@@ -73,8 +79,7 @@ class ProfileGithub extends React.Component {
     });
     return (
       <div ref="myRef">
-        <hr />
-        <h3 className="mb-4">Latest Github Repos</h3>
+        {repoItems.length > 0 && repoTitle}
         {repoItems}
       </div>
     );
