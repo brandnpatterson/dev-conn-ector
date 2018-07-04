@@ -4,8 +4,8 @@
   "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
-    "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
+    "deploy": "git push heroku master",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "server": "nodemon server.js",

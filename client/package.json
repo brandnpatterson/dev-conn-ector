@@ -1,9 +1,10 @@
 {
-  "name": "redux-app",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "react-app-rewired build",
+    "build": "react-scripts build",
+    "build-rewired": "react-app-rewired build",
     "start": "npm run stylelint && react-app-rewired start",
     "stylelint": "stylelint src/**/*.jsx",
     "test": "react-app-rewired test --env=jsdom",
