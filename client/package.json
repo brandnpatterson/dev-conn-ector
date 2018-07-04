@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "react-app-rewired build && npm run create-cname",
-    "deploy": "npm run build && surge build",
+    "build": "react-app-rewired build",
     "start": "npm run stylelint && react-app-rewired start",
     "stylelint": "stylelint src/**/*.jsx",
     "test": "react-app-rewired test --env=jsdom",

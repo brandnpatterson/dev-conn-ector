@@ -13,6 +13,8 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
+import Post from './components/post/Post';
+import Posts from './components/posts/Posts';
 import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import PrivateRoute from './components/templates/PrivateRoute';
@@ -47,6 +49,8 @@ let App = () => {
             />
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/post/:id" component={Post} />
+            <PrivateRoute exact path="/feed" component={Posts} />
             <Route path="" component={NotFound} />
           </Switch>
         </div>
