@@ -50,7 +50,7 @@ if (localStorage.jwtToken) {
 //   );
 // };
 
-const render = () => {
+const renderApp = () => {
   render(
     <Provider store={store}>
       <App />
@@ -61,10 +61,10 @@ const render = () => {
 
 registerServiceWorker();
 
-render();
+renderApp();
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-    render();
+    renderApp();
   });
 }
