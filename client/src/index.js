@@ -19,6 +19,8 @@ const isDevEnv = process.env.NODE_ENV === 'development';
 let AppContainer;
 if (isDevEnv) {
   AppContainer = require('react-hot-loader').AppContainer;
+} else if (isProdEnv) {
+  AppContainer = null;
 }
 
 // Check for jwtToken
