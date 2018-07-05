@@ -5,20 +5,24 @@ import rootReducer from './reducers';
 const initialState = {};
 const middleware = [thunk];
 
-let reduxTools;
-process.env.NODE_ENV === 'development'
-  ? (reduxTools =
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__())
-  : (reduxTools = null);
+let store;
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  compose(
-    applyMiddleware(...middleware),
-    reduxTools
-  )
-);
+if (process.env.NODE_ENV === 'development') {
+  store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(...middleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+  );
+} else if (process.env.NODE_ENV === 'production') {
+  store = createStore(
+    rootReducer,
+    initialState,
+    compose(applyMiddleware(...middleware))
+  );
+}
 
 export default store;
