@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 import App from './App';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -13,15 +14,6 @@ import { clearCurrentProfile } from './actions/profileActions';
 // Validation
 import jwtDecode from 'jwt-decode';
 import setAuthToken from './validation/setAuthToken';
-
-// Live Reload
-const isDevEnv = process.env.NODE_ENV === 'development';
-let AppContainer;
-if (isDevEnv) {
-  AppContainer = require('react-hot-loader').AppContainer;
-} else if (isProdEnv) {
-  AppContainer = null;
-}
 
 // Check for jwtToken
 if (localStorage.jwtToken) {
@@ -48,7 +40,7 @@ if (localStorage.jwtToken) {
   }
 }
 
-const renderLiveReload = () => {
+const renderApp = () => {
   render(
     <AppContainer>
       <Provider store={store}>
@@ -59,21 +51,12 @@ const renderLiveReload = () => {
   );
 };
 
-const renderApp = () => {
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
-};
-
 registerServiceWorker();
 
 renderApp();
 
-if (module.hot && isDevEnv) {
+if (module.hot) {
   module.hot.accept('./App', () => {
-    renderLiveReload();
+    renderApp();
   });
 }
