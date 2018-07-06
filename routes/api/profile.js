@@ -124,8 +124,11 @@ router.post(
     if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.status) profileFields.status = req.body.status;
     if (req.body.status) profileFields.status = req.body.status;
-    if (req.body.githubusername)
-      profileFields.githubusername = req.body.githubusername;
+    if (req.body.githubusername) {
+      const username = req.body.githubusername;
+      const withoutHttp = username.substr(username.lastIndexOf('/') + 1);
+      profileFields.githubusername = withoutHttp;
+    }
     // Skills - split into array
     if (typeof req.body.skills !== 'undefined') {
       profileFields.skills = req.body.skills.split(',');
