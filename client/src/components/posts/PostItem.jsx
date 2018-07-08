@@ -44,13 +44,11 @@ class PostItem extends React.Component {
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={post.avatar}
-                alt={`${post.name}'s avatar`}
-              />
-            </a>
+            <img
+              className="rounded-circle d-none d-md-block"
+              src={post.avatar}
+              alt={`${post.name}'s avatar`}
+            />
             <br />
             <p className="text-center">{post.name}</p>
           </div>

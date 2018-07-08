@@ -2,10 +2,10 @@ import React from 'react';
 import { array, func } from 'prop-types';
 import styled from 'styled-components';
 import Moment from 'react-moment';
-import { deleteExperience } from '../../actions/profileActions';
 
 // Redux
 import { connect } from 'react-redux';
+import { deleteExperience } from '../../actions/profileActions';
 
 const propTypes = {
   deleteExperience: func.isRequired,
@@ -15,22 +15,16 @@ const propTypes = {
 class Experience extends React.Component {
   onDeleteClick(id) {
     if (window.confirm('Are you sure? This cannot be undone')) {
-      this.props.deleteEducation(id);
+      this.props.deleteExperience(id);
     }
   }
 
   render() {
-    const trimmed = element => {
-      return element.length > 20
-        ? `${element.substring(0, 8)}...`.trim()
-        : element.trim();
-    };
-
     const experience = this.props.experience.map(exp => {
       return (
         <tr id={exp._id} key={exp._id}>
-          <td>{trimmed(exp.company)}</td>
-          <td>{trimmed(exp.title)}</td>
+          <td>{exp.company}</td>
+          <td>{exp.title}</td>
           <td>
             <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}
             {exp.to === null ? (

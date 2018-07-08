@@ -13,10 +13,16 @@ module.exports = validateEducationInput = data => {
   if (Validator.isEmpty(data.school)) {
     errors.school = 'School field is required';
   }
+  if (!Validator.isLength(data.school, { min: 1, max: 30 })) {
+    errors.school = 'Text field must be less than 30 characters';
+  }
 
   // Degree
   if (Validator.isEmpty(data.degree)) {
     errors.degree = 'Degree field is required';
+  }
+  if (!Validator.isLength(data.degree, { min: 1, max: 30 })) {
+    errors.degree = 'Text field must be less than 30 characters';
   }
 
   // From
