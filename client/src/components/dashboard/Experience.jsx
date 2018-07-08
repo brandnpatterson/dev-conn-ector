@@ -14,7 +14,9 @@ const propTypes = {
 
 class Experience extends React.Component {
   onDeleteClick(id) {
-    this.props.deleteExperience(id);
+    if (window.confirm('Are you sure? This cannot be undone')) {
+      this.props.deleteEducation(id);
+    }
   }
 
   render() {
@@ -72,8 +74,10 @@ const StyledExperience = styled.div`
     width: 100%;
 
     button {
-      position: absolute;
-      right: 0;
+      @media (min-width: 540px) {
+        position: absolute;
+        right: 15px;
+      }
     }
   }
 `;
