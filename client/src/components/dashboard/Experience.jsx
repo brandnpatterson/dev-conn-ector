@@ -20,11 +20,17 @@ class Experience extends React.Component {
   }
 
   render() {
+    const trimmed = element => {
+      return element.length > 20
+        ? `${element.substring(0, 8)}...`.trim()
+        : element.trim();
+    };
+
     const experience = this.props.experience.map(exp => {
       return (
         <tr id={exp._id} key={exp._id}>
-          <td>{exp.company}</td>
-          <td>{exp.title}</td>
+          <td>{trimmed(exp.company)}</td>
+          <td>{trimmed(exp.title)}</td>
           <td>
             <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}
             {exp.to === null ? (
@@ -74,7 +80,10 @@ const StyledExperience = styled.div`
     width: 100%;
 
     button {
+      display: none;
+
       @media (min-width: 540px) {
+        display: block;
         position: absolute;
         right: 15px;
       }

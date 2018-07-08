@@ -20,11 +20,17 @@ class Education extends React.Component {
   }
 
   render() {
+    const trimmed = element => {
+      return element.length > 20
+        ? `${element.substring(0, 8)}...`.trim()
+        : element.trim();
+    };
+
     const education = this.props.education.map(exp => {
       return (
         <tr key={exp._id}>
-          <td>{exp.school}</td>
-          <td>{exp.degree}</td>
+          <td>{trimmed(exp.school)}</td>
+          <td>{trimmed(exp.degree)}</td>
           <td>
             <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{' '}
             {exp.to === null ? (
@@ -74,7 +80,10 @@ const StyledEducation = styled.div`
     width: 100%;
 
     button {
+      display: none;
+
       @media (min-width: 540px) {
+        display: block;
         position: absolute;
         right: 15px;
       }
