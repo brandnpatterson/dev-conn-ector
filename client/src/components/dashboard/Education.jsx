@@ -1,5 +1,6 @@
 import React from 'react';
 import { array, func } from 'prop-types';
+import styled from 'styled-components';
 import Moment from 'react-moment';
 import { deleteEducation } from '../../actions/profileActions';
 
@@ -30,7 +31,7 @@ class Education extends React.Component {
               <Moment format="YYYY/MM/DD">{exp.to}</Moment>
             )}
           </td>
-          <td>
+          <td className="button-container">
             <button
               onClick={this.onDeleteClick.bind(this, exp._id)}
               className="btn btn-danger"
@@ -43,7 +44,7 @@ class Education extends React.Component {
     });
 
     return (
-      <div>
+      <StyledEducation>
         <h4 className="mb-4">Education Credentials</h4>
         <table className="table">
           <thead>
@@ -56,10 +57,26 @@ class Education extends React.Component {
           </thead>
           <tbody>{education}</tbody>
         </table>
-      </div>
+      </StyledEducation>
     );
   }
 }
+
+const StyledEducation = styled.div`
+  td {
+    width: 25%;
+  }
+
+  .button-container {
+    position: relative;
+    width: 100%;
+
+    button {
+      position: absolute;
+      right: 15px;
+    }
+  }
+`;
 
 Education.propTypes = propTypes;
 

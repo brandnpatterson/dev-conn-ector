@@ -1,5 +1,6 @@
 import React from 'react';
 import { array, func } from 'prop-types';
+import styled from 'styled-components';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
 
@@ -30,7 +31,7 @@ class Experience extends React.Component {
               <Moment format="YYYY/MM/DD">{exp.to}</Moment>
             )}
           </td>
-          <td>
+          <td className="button-container">
             <button
               onClick={this.onDeleteClick.bind(this, exp._id)}
               className="btn btn-danger"
@@ -43,7 +44,7 @@ class Experience extends React.Component {
     });
 
     return (
-      <div>
+      <StyledExperience>
         <h4 className="mb-4">Experience Credentials</h4>
         <table className="table">
           <thead>
@@ -56,10 +57,26 @@ class Experience extends React.Component {
           </thead>
           <tbody>{experience}</tbody>
         </table>
-      </div>
+      </StyledExperience>
     );
   }
 }
+
+const StyledExperience = styled.div`
+  td {
+    width: 25%;
+  }
+
+  .button-container {
+    position: relative;
+    width: 100%;
+
+    button {
+      position: absolute;
+      right: 15px;
+    }
+  }
+`;
 
 Experience.propTypes = propTypes;
 
