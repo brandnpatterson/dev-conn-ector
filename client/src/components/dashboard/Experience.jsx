@@ -73,7 +73,7 @@ const StyledExperience = styled.div`
 
     button {
       position: absolute;
-      right: 15px;
+      right: 0;
     }
   }
 `;
